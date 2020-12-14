@@ -10,7 +10,8 @@ namespace ConsoleSystem.GUI.ConsoleElement.CenterWindows
         public int Height { get; set; }
         public int Width { get; set; }
         public Size size { get; set; } = new Size(10, 10);
-        public Button close;
+        public static Button close;
+        public static bool Open = false;
 
         public HelpInfoWindow(int w, int h)
         {
@@ -18,7 +19,7 @@ namespace ConsoleSystem.GUI.ConsoleElement.CenterWindows
             this.Width = w;
         }
 
-        public void Close()
+        public  void Close()
         {
             int startPos = ((this.Height - this.size.Height) / 2);
             int endPos = startPos + this.size.Height;
@@ -30,10 +31,13 @@ namespace ConsoleSystem.GUI.ConsoleElement.CenterWindows
                 }
             }
             GlobalMemroy.RemoveButton(close);
+            Open = false;
         }
 
         public void CreateWindow()
         {
+            BottomBar.ClearAllWindow();
+            Open = true;
             int startPos = ((this.Height - this.size.Height) / 2);
             int endPos = startPos + this.size.Height;
             for (int y = startPos; y < endPos; y++)

@@ -2,6 +2,7 @@
 using System.Drawing;
 using ConsoleSystem.GUI.Controls;
 using ConsoleSystem.GUI.ClearConsoleElement;
+using ConsoleSystem.GUI.ConsoleElement.CenterWindows;
 
 namespace ConsoleSystem.GUI.ConsoleElement
 {
@@ -11,12 +12,18 @@ namespace ConsoleSystem.GUI.ConsoleElement
         {
             this.Height = h;
             this.Width = w;
+            H = h;
+            W = w;
         }
 
         public int Height { get; set; }
         public int Width { get; set; }
+        public static int H { get; private set; }
+        public static int W { get; private set; }
         public static bool Menu_Open = false;
         public static readonly int MENU_HEIGHT = 2;
+        private SettingWindow sw;
+        private FileWindow fw;
         private readonly Color MENU_COLOR = Color.FromArgb(GUI.Draw.Colors[(int)ConsoleColor.Gray]);
 
         public void Draw()
@@ -42,14 +49,43 @@ namespace ConsoleSystem.GUI.ConsoleElement
             Files.ButtonActive += Files_ButtonActive;
         }
 
+        public static void ClearAllWindow()
+        {
+            if (HelpInfoWindow.Open)
+                new ClearHelp(W,H).Clear();
+            if (SettingWindow.Open)
+                new ClearSettings(W, H).Clear();
+            new ClearFile();
+
+        }
+
         private void Files_ButtonActive(object sender, Events.ButtonActiveEventArgs e)
         {
-            
+            if (!FileWindow.Open)
+            {
+                fw = new FileWindow(this.Width, this.Height);
+                fw.CreateWindow();
+            }
+            else
+            {
+                if (fw != null)
+                    fw.Close();
+            }
         }
 
         private void Setting_ButtonActive(object sender, Events.ButtonActiveEventArgs e)
         {
-            
+            if (!SettingWindow.Open)
+            {
+                sw = new SettingWindow(this.Width, this.Height);
+                sw.CreateWindow();
+            }
+            else
+            {
+                if(sw!=null)
+                    sw.Close();
+            }
+                
         }
 
         private void Menu_ButtonActive(object sender, Events.ButtonActiveEventArgs e)

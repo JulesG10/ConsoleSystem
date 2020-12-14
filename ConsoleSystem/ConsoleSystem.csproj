@@ -124,9 +124,14 @@
     <Compile Include="Events\WindowConsoleEvent.cs" />
     <Compile Include="Events\WindowResizeEventArgs.cs" />
     <Compile Include="GUI\ClearConsoleElement\ClearElementProperties.cs" />
+    <Compile Include="GUI\ClearConsoleElement\ClearFile.cs" />
+    <Compile Include="GUI\ClearConsoleElement\ClearHelp.cs" />
     <Compile Include="GUI\ClearConsoleElement\ClearMenu.cs" />
+    <Compile Include="GUI\ClearConsoleElement\ClearSettings.cs" />
     <Compile Include="GUI\ConsoleElement\BottomBar.cs" />
+    <Compile Include="GUI\ConsoleElement\CenterWindows\FileWindow.cs" />
     <Compile Include="GUI\ConsoleElement\CenterWindows\HelpInfoWindow.cs" />
+    <Compile Include="GUI\ConsoleElement\CenterWindows\SettingWindow.cs" />
     <Compile Include="GUI\ConsoleElement\CenterWindows\WindowDesignProperties.cs" />
     <Compile Include="GUI\ConsoleElement\ConsoleElementProperties.cs" />
     <Compile Include="GUI\ConsoleElement\Menu.cs" />

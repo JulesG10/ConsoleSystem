@@ -51,7 +51,14 @@ namespace ConsoleSystem.GUI.ConsoleElement
                     Draw.DrawPixel(MENU_COLOR, new Point(x, y));
                 }
             }
-            this.Make(startPosTop);
+
+            /* BUG: Console cursor can't be at the same place in same time...
+             this.Make(startPosTop);
+            */
+            help = new Button("Aide/Info");
+            help.Create(3, startPosTop + 3);
+            help.ButtonActive += Help_ButtonActive;
+            /**/
 
             BatteryThread = new Thread(() =>
             {
@@ -61,7 +68,12 @@ namespace ConsoleSystem.GUI.ConsoleElement
                     double batterylife = pwr.BatteryLifePercent;
                     Label battryLevel = new Label($"Battery {(int)(batterylife * 100)}%", ConsoleColor.DarkGray);
                     battryLevel.Create(3, startPosTop + 1);
+                    /* BUG: Console cursor can't be at the same place in same time...
                     Thread.Sleep(60000);
+                    */
+                    break;
+                    /**/
+
                 }
             });
             BatteryThread.Start();
@@ -71,9 +83,15 @@ namespace ConsoleSystem.GUI.ConsoleElement
             {
                 while (true)
                 {
+                    /* BUG: Console cursor can't be at the same place in same time...
                     Label time = new Label($"Time {DateTime.Now.ToString("hh:mm:ss")}", ConsoleColor.DarkGray);
                     time.Create(3, startPosTop + 2);
                     Thread.Sleep(1000);
+                    */
+                    Label time = new Label($"Date {DateTime.Now.ToString("d/MM/yyyy")}", ConsoleColor.DarkGray);
+                    time.Create(3, startPosTop + 2);
+                    break;
+                    /**/
                 }
             });
             TimeThread.Start();
