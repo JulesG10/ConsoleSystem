@@ -19,19 +19,22 @@ namespace ConsoleSystem.GUI.Navigation
 
         private static void Change(Button lastB,Button newB)
         {
-            Console.SetCursorPosition(lastB.X, lastB.Y);
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(lastB.textContent);
-            Console.BackgroundColor = ConsoleColor.Black;
+            if(lastB!=null && newB != null)
+            {
+                Console.SetCursorPosition(lastB.X, lastB.Y);
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(lastB.textContent);
+                Console.BackgroundColor = ConsoleColor.Black;
 
-            Console.SetCursorPosition(newB.X, newB.Y); 
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.Write(newB.textContent);
+                Console.SetCursorPosition(newB.X, newB.Y);
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.Write(newB.textContent);
 
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
 
         public static void Back()

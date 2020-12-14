@@ -44,7 +44,14 @@ namespace ConsoleSystem.Save
 
         public static Button GetButton()
         {
-            return ButtonList[ButtonActualIndex];
+            try
+            {
+                return ButtonList[ButtonActualIndex];
+            }
+            catch
+            {
+                return null;
+            }
         }
         public static RangeButton GetRangeButton()
         {

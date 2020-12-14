@@ -3,6 +3,7 @@ using System.Drawing;
 using ConsoleSystem.GUI.Controls;
 using System.Management;
 using System.Threading;
+using ConsoleSystem.GUI.ConsoleElement.CenterWindows;
 
 namespace ConsoleSystem.GUI.ConsoleElement
 {
@@ -12,6 +13,8 @@ namespace ConsoleSystem.GUI.ConsoleElement
         public static readonly int MENU_WIDTH = 20;
         public static Thread TimeThread { get; private set; }
         public static Button help { get; private set; }
+        private int W;
+        private int H;
         public static Thread BatteryThread { get; private set; }
         private readonly Color MENU_COLOR = Color.FromArgb(GUI.Draw.Colors[(int)ConsoleColor.DarkGray]);
 
@@ -19,7 +22,6 @@ namespace ConsoleSystem.GUI.ConsoleElement
         {
             help = new Button("Aide/Info");
             help.Create(3, startPosTop + 3);
-            help.ButtonActive += HelpActive;
             help.ButtonActive += Help_ButtonActive;
 
             System.Windows.Forms.PowerStatus pwr = System.Windows.Forms.SystemInformation.PowerStatus;
@@ -33,18 +35,16 @@ namespace ConsoleSystem.GUI.ConsoleElement
 
         private void Help_ButtonActive(object sender, Events.ButtonActiveEventArgs e)
         {
-            
-        }
-
-        private void HelpActive(object sender, Events.ButtonActiveEventArgs e)
-        {
-           
+            HelpInfoWindow win = new HelpInfoWindow(this.W,this.H);
+            win.CreateWindow();
         }
 
         public Menu(int w, int h)
         {
+            this.H = h;
+            this.W = w;
             int startPosTop = h - (MENU_HEIGHT);
-            for (int y = startPosTop; y < h - (BottomBar.MENU_HEIGHT+1); y++)
+            for (int y = startPosTop; y < h - (BottomBar.MENU_HEIGHT + 1); y++)
             {
                 for (int x = 0; x < MENU_WIDTH; x++)
                 {
@@ -77,7 +77,7 @@ namespace ConsoleSystem.GUI.ConsoleElement
                 }
             });
             TimeThread.Start();
-            
+
         }
     }
 }

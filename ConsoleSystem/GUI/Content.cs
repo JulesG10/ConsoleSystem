@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Threading;
 using ConsoleSystem.Events;
+using ConsoleSystem.GUI.ConsoleElement;
 using ConsoleSystem.Save;
 
 namespace ConsoleSystem.GUI
@@ -26,9 +27,13 @@ namespace ConsoleSystem.GUI
         {
             new Navigation.Action((int)e.KeyInfo.Key);
         }
+        private int Width;
+        private int Height;
 
         private void CreateInterface(int w, int h)
         {
+            this.Width = w;
+            this.Height = h;
             for (int x = 0; x < Math.Max(h, w); x++)
             {
                 for (int y = 0; y < Math.Min(h, w); y++)
@@ -49,6 +54,12 @@ namespace ConsoleSystem.GUI
 
         private void ConsoleWindowResize(object sender, WindowResizeEventArgs e)
         {
+            if (BottomBar.Menu_Open)
+            {
+                BottomBar.Menu_Open = false;
+                ClearConsoleElement.ClearMenu clear = new ClearConsoleElement.ClearMenu(this.Width,this.Height);
+                clear.Clear();
+            }
             Program.DisableScrollBar();
             this.CreateInterface(e.Width, e.Height);
         }

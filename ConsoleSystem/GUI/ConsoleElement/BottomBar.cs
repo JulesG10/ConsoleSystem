@@ -15,7 +15,7 @@ namespace ConsoleSystem.GUI.ConsoleElement
 
         public int Height { get; set; }
         public int Width { get; set; }
-        private bool Menu_Open = false;
+        public static bool Menu_Open = false;
         public static readonly int MENU_HEIGHT = 2;
         private readonly Color MENU_COLOR = Color.FromArgb(GUI.Draw.Colors[(int)ConsoleColor.Gray]);
 
@@ -54,16 +54,16 @@ namespace ConsoleSystem.GUI.ConsoleElement
 
         private void Menu_ButtonActive(object sender, Events.ButtonActiveEventArgs e)
         {
-            if (!this.Menu_Open)
+            if (!Menu_Open)
             {
-                this.Menu_Open = true;
+                Menu_Open = true;
                 new Menu(this.Width, this.Height);
             }
             else
             {
                 ClearMenu Cm = new ClearMenu(this.Width, this.Height);
                 Cm.Clear();
-                this.Menu_Open = false;
+                Menu_Open = false;
             }
         }
     }

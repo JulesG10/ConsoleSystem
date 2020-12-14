@@ -27,6 +27,11 @@ namespace ConsoleSystem.GUI
                         0xFFFFFF  //White = 15
                     };
 
+        internal static void DrawPixel(object p, Point point)
+        {
+            throw new NotImplementedException();
+        }
+
         public static void DrawPixel(Color cValue,Point coord,bool noSave = false)
         {
                 Color[] cTable = Colors.Select(x => Color.FromArgb(x)).ToArray();
