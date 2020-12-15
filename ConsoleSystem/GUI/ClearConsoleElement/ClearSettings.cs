@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using ConsoleSystem.Save;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ConsoleSystem.GUI.ConsoleElement.CenterWindows;
 
 namespace ConsoleSystem.GUI.ClearConsoleElement
 {
@@ -32,6 +30,9 @@ namespace ConsoleSystem.GUI.ClearConsoleElement
                     GUI.Draw.DrawPixel(Color.FromArgb(GUI.Draw.Colors[(int)ConsoleColor.Blue]), new Point(x, y));
                 }
             }
+            GlobalMemroy.RemoveButton(SettingWindow.close);
+            GlobalMemroy.RemoveButton(SettingWindow.invertColor);
+            GlobalMemroy.RemoveButton(SettingWindow.takeScreenShot);
         }
     }
 }

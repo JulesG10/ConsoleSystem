@@ -1,7 +1,7 @@
 ﻿using System;
 using ConsoleSystem.GUI.Controls;
 using System.Drawing;
-using ConsoleSystem.Save;
+using ConsoleSystem.File;
 
 namespace ConsoleSystem.GUI.ConsoleElement.CenterWindows
 {
@@ -20,6 +20,7 @@ namespace ConsoleSystem.GUI.ConsoleElement.CenterWindows
 
         public void Close()
         {
+            Open = false;
             int startPos = ((this.Height - this.size.Height) / 2);
             int endPos = startPos + this.size.Height;
             int wPos = (this.Width - this.size.Width) / 2;
@@ -32,7 +33,6 @@ namespace ConsoleSystem.GUI.ConsoleElement.CenterWindows
                     GUI.Draw.DrawPixel(Color.FromArgb(GUI.Draw.Colors[(int)ConsoleColor.Blue]), new Point(x, y));
                 }
             }
-            Open = false;
         }
 
         public void CreateWindow()
@@ -49,7 +49,14 @@ namespace ConsoleSystem.GUI.ConsoleElement.CenterWindows
                     GUI.Draw.DrawPixel(Color.FromArgb(GUI.Draw.Colors[(int)ConsoleColor.Gray]), new Point(x, y));
                 }
             }
-
+            new Label("Your Screen Shoot: ", ConsoleColor.Gray).Create((this.Width - this.size.Width) / 2, startPos);
+            int i = 2;
+            foreach(string line in Captures.GetCaptures())
+            {
+                Label lb = new Label("- "+line, ConsoleColor.Gray);
+                lb.Create((this.Width - this.size.Width) / 2, startPos + i);
+                i++;
+            }
         }
     }
 }

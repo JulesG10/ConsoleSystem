@@ -24,13 +24,13 @@ namespace ConsoleSystem.GUI.ConsoleElement
             help.Create(3, startPosTop + 3);
             help.ButtonActive += Help_ButtonActive;
 
+            Label time = new Label($"Time {DateTime.Now.ToString("hh:mm:ss")}", ConsoleColor.DarkGray);
+            time.Create(3, startPosTop );
+
             System.Windows.Forms.PowerStatus pwr = System.Windows.Forms.SystemInformation.PowerStatus;
             double batterylife = pwr.BatteryLifePercent;
             Label battryLevel = new Label($"Battery {(int)(batterylife * 100)}%", ConsoleColor.DarkGray);
-            battryLevel.Create(3, startPosTop + 1);
-
-            Label time = new Label($"Time {DateTime.Now.ToString("hh:mm:ss")}", ConsoleColor.DarkGray);
-            time.Create(3, startPosTop + 2);
+            battryLevel.Create(3, startPosTop + 2);
         }
 
         private void Help_ButtonActive(object sender, Events.ButtonActiveEventArgs e)
@@ -64,10 +64,6 @@ namespace ConsoleSystem.GUI.ConsoleElement
             {
                 while (true)
                 {
-                    System.Windows.Forms.PowerStatus pwr = System.Windows.Forms.SystemInformation.PowerStatus;
-                    double batterylife = pwr.BatteryLifePercent;
-                    Label battryLevel = new Label($"Battery {(int)(batterylife * 100)}%", ConsoleColor.DarkGray);
-                    battryLevel.Create(3, startPosTop + 1);
                     /* BUG: Console cursor can't be at the same place in same time...
                     Thread.Sleep(60000);
                     */
@@ -77,7 +73,12 @@ namespace ConsoleSystem.GUI.ConsoleElement
                 }
             });
             BatteryThread.Start();
-
+            /**/
+            System.Windows.Forms.PowerStatus pwr = System.Windows.Forms.SystemInformation.PowerStatus;
+            double batterylife = pwr.BatteryLifePercent;
+            Label battryLevel = new Label($"Battery {(int)(batterylife * 100)}%", ConsoleColor.DarkGray);
+            battryLevel.Create(3, startPosTop + 1);
+            /**/
 
             TimeThread = new Thread(() =>
             {
@@ -88,14 +89,16 @@ namespace ConsoleSystem.GUI.ConsoleElement
                     time.Create(3, startPosTop + 2);
                     Thread.Sleep(1000);
                     */
-                    Label time = new Label($"Date {DateTime.Now.ToString("d/MM/yyyy")}", ConsoleColor.DarkGray);
-                    time.Create(3, startPosTop + 2);
+                   
                     break;
                     /**/
                 }
             });
             TimeThread.Start();
-
+            /**/
+            Label time = new Label($"Date {DateTime.Now.ToString("d/MM/yyyy")}", ConsoleColor.DarkGray);
+            time.Create(3, startPosTop + 2);
+            /**/
         }
     }
 }

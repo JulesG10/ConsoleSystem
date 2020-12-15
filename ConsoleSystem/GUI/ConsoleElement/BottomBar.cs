@@ -55,8 +55,8 @@ namespace ConsoleSystem.GUI.ConsoleElement
                 new ClearHelp(W,H).Clear();
             if (SettingWindow.Open)
                 new ClearSettings(W, H).Clear();
-            new ClearFile();
-
+            if (FileWindow.Open)
+                new ClearFile(W, H).Clear();
         }
 
         private void Files_ButtonActive(object sender, Events.ButtonActiveEventArgs e)
